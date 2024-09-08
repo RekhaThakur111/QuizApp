@@ -12,27 +12,27 @@ const questions = [{
     'b': 'alert',
     'c': 'msgAlert',
     'd': 'displayAlert',
-    'correct': 'b' 
+    'correct': 'b'
 },
 {
-    'que': 'Which keyword is used for declaring a variable in JavaScript that can be reassigned?', 
+    'que': 'Which keyword is used for declaring a variable in JavaScript that can be reassigned?',
     'a': 'const',
     'b': 'var',
     'c': 'let',
     'd': 'Staic',
-    'correct': 'c', 
+    'correct': 'c',
 }
 ]
 let index = 0;
 let total = questions.length;
 let right = 0;
-    wrong = 0;
+wrong = 0;
 const quesBox = document.getElementById("quesBox")
-const optionInputs = document.querySelectorAll('.options') 
+const optionInputs = document.querySelectorAll('.options')
 const loadQuestion = () => {
-if (index === total) {
-    return endQuiz()
-}
+    if (index === total) {
+        return endQuiz()
+    }
     reset();
     const data = questions[index]
     quesBox.innerText = ` ${index + 1}) ${data.que}`;
@@ -41,27 +41,27 @@ if (index === total) {
     optionInputs[2].nextElementSibling.innerText = data.c;
     optionInputs[3].nextElementSibling.innerText = data.d;
 }
-    const submitQuiz = () => {
+const submitQuiz = () => {
     const data = questions[index];
     const ans = getAnswer()
     console.log(ans, data.correct)
     if (ans === data.correct) {
         right++;
-     }else {
+    } else {
         wrong++;
-     }
+    }
     index++;
     loadQuestion();
-     return;
+    return;
 }
-   const getAnswer = () => {
+const getAnswer = () => {
     let answer;
     optionInputs.forEach(
-      (input) => {
-        if (input.checked) {
-            answer = input.value;
+        (input) => {
+            if (input.checked) {
+                answer = input.value;
+            }
         }
-      }  
     )
     return answer;
 }
@@ -81,6 +81,7 @@ const endQuiz = () => {
        <h2> ${right} / ${total} are correct </h2>
    </div>
     `
+    document.getElementById("box").style.height = "150px"
 }
 
 loadQuestion();
